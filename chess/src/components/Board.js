@@ -1,21 +1,37 @@
 import React from 'react';
-import '../css/board.css'
+import '../components/css/board.css';
+import gameboard from '../components/data/gameboard.json'
 
 export default class Board extends React.Component {
 
-    render() {
-        let board = [];
-        for (let i = 0; i < 19; i++) {
-            for (let j = 0; j < 19; j++) {
-                board.push(<div className="board-cell">{i}{j}</div>)
+    constructor(){
+        super();
+            this.state = {
+                board: [],
             }
         }
 
+    componentWillMount() {
+        let temp = []
+        {gameboard.map( game => {
+            temp.push(game.id,game.data)
+        }
+        )}
+        this.setState({
+            board : temp
+        })
+
+    }
+
+    
+
+    render() {
+      
         return (
             <div className="display-board">
                 <div className="main-board">
                     <div className="board-size">
-                        {board}
+                    
                     </div>
                 </div>
                 <div className="display-info">
